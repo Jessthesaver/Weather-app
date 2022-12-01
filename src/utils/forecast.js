@@ -7,12 +7,13 @@ function forecast(latitude,longitude,callback){
         }else if(body.error){
             callback(body.error.info,undefined)
         }else{
-            const{temperature,feelslike,weather_descriptions:description,precip:chanceOfRain}=body.current;
+            const{temperature,feelslike,weather_descriptions:description,precip:chanceOfRain,humidity:humidity}=body.current;
             callback(undefined, {
                 temperature,
                 feelslike,
                 description,
-                chanceOfRain
+                chanceOfRain,
+                humidity
             })
         }
     })

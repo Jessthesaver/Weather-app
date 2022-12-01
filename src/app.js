@@ -53,14 +53,14 @@ app.get('/weather',(req,res)=>{
         if(error){
             res.send({error})
         }else{
-            forecast(latitude,longitude,(error, {temperature,feelslike,description,chanceOfRain}={}) => {
+            forecast(latitude,longitude,(error, {temperature,feelslike,description,chanceOfRain,humidity}={}) => {
                 if(error){
                     res.send({error})
                 }else{
                     let locationmessage=`Location: ${latitude},${longitude}
 City: ${location}.`
                     let forecastmessage=`The temperature is ${temperature} degrees and it feels like ${feelslike} degrees.
-Outside is ${description} and there are ${chanceOfRain}% chances of rain.`
+Outside is ${description} and there are ${chanceOfRain}% chances of rain and a humidity of ${humidity}%.`
                     let obj= {
                         location:location,
                         latlong:[latitude,longitude],
@@ -69,7 +69,8 @@ Outside is ${description} and there are ${chanceOfRain}% chances of rain.`
                         description,
                         chanceOfRain,
                         locationmessage,
-                        forecastmessage
+                        forecastmessage,
+                        humidity
                     }
                     res.send(obj)
                 }  
